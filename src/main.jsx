@@ -26,7 +26,7 @@ function AppRoot() {
   const renderCurrentPage = () => {
     switch (currentPage) {
       case 'home':
-        return <HomePage />;
+        return <HomePage onNavigate={handleNavigation} />;
       case 'makanan':
         return <MakananPage />;
       case 'minuman':
@@ -34,7 +34,7 @@ function AppRoot() {
       case 'profile':
         return <ProfilePage />;
       default:
-        return <HomePage />;
+        return <HomePage onNavigate={handleNavigation} />;
     }
   };
 

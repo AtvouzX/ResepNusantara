@@ -2,7 +2,7 @@
 import { Clock, Star, ChefHat } from 'lucide-react';
 import { useState, useEffect, useRef } from 'react';
 
-export default function FeaturedMakananSection({ featuredMakanan }) {
+export default function FeaturedMakananSection({ featuredMakanan, onNavigate }) {
   const [visibleMakanan, setVisibleMakanan] = useState(new Set());
   const makananRefs = useRef([]);
 
@@ -34,21 +34,25 @@ export default function FeaturedMakananSection({ featuredMakanan }) {
     <section>
       <div className="flex items-center justify-between mb-6 md:mb-8">
         <h2 className="text-xl md:text-3xl font-bold text-slate-800">Resep Makanan</h2>
-        <button className="text-slate-500 hover:text-slate-600 font-medium text-xs md:text-sm transition-colors duration-200 hover:underline">
+        <button
+          onClick={() => onNavigate && onNavigate('makanan')}
+          className="text-slate-500 hover:text-slate-600 font-medium text-xs md:text-sm transition-colors duration-200 hover:underline"
+        >
           Lihat Semua
         </button>
       </div>
       
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-8">
         {featuredMakanan.map((recipe, index) => (
-          <div 
-            key={recipe.id} 
+          <div
+            key={recipe.id}
             ref={el => makananRefs.current[index] = el}
             className={`group transform transition-all duration-700 ${
-              visibleMakanan.has(index) 
-                ? 'translate-y-0 opacity-100' 
+              visibleMakanan.has(index)
+                ? 'translate-y-0 opacity-100'
                 : 'translate-y-8 opacity-0'
             }`}
+            onClick={() => onNavigate && onNavigate('makanan')}
           >
             <div className="relative bg-white/15 backdrop-blur-xl border border-white/25 rounded-2xl md:rounded-3xl overflow-hidden shadow-lg md:shadow-2xl shadow-blue-500/5 hover:shadow-blue-500/15 transition-all duration-500 cursor-pointer group-hover:scale-105 group-hover:bg-white/20">
               
