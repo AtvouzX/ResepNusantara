@@ -1,23 +1,34 @@
 // src/components/makanan/RecipeGrid.jsx
-import { Clock, Star, ChefHat } from 'lucide-react';
+import { Clock, Star, ChefHat, ChevronLeft, ChevronRight } from 'lucide-react';
 import { useState, useEffect, useRef } from 'react';
+import PropTypes from 'prop-types';
 
 export default function RecipeGrid({ recipes, onRecipeClick }) {
   const [visibleCards, setVisibleCards] = useState(new Set());
+  const [currentPage, setCurrentPage] = useState(1);
   const cardRefs = useRef([]);
+  const itemsPerPage = 6;
 
-  useEffect(() => {
-   
-    cardRefs.current = cardRefs.current.slice(0, recipes.length);
-    
+  const totalPages = Math.ceil(recipes.length / itemsPerPage);
+  const startIndex = (currentPage - 1) * itemsPerPage;
+  const currentRecipes = recipes.slice(startIndex, startIndex + itemsPerPage);
+
+    useEffect(() => {
+        if (currentPage > totalPages) setCurrentPage(1);
+    }, [recipes.length]);
+
+
+    useEffect(() => {
+    cardRefs.current = cardRefs.current.slice(0, currentRecipes.length);
+
     const observer = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
           const index = parseInt(entry.target.dataset.index);
-     
+
           setTimeout(() => {
             setVisibleCards(prev => new Set(prev).add(index));
-          }, (index % 3) * 150); 
+          }, (index % 3) * 150);
         }
       });
     }, { threshold: 0.1 });
@@ -32,7 +43,7 @@ export default function RecipeGrid({ recipes, onRecipeClick }) {
     return () => {
       observer.disconnect();
     };
-  }, [recipes]); 
+  }, [currentRecipes]);
 
   return (
     <section>
@@ -43,7 +54,7 @@ export default function RecipeGrid({ recipes, onRecipeClick }) {
         Temukan inspirasi masakan Nusantara favoritmu. Dari hidangan utama hingga camilan, semua ada di sini.
       </p>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-8">
-        {recipes.map((recipe, index) => (
+        {currentRecipes.map((recipe, index) => (
           <div 
             key={recipe.id} 
             ref={el => cardRefs.current[index] = el}
@@ -95,6 +106,43 @@ export default function RecipeGrid({ recipes, onRecipeClick }) {
           </div>
         ))}
       </div>
+
+      {totalPages > 1 && (
+        <div className="flex justify-center items-center space-x-2 mt-8 mb-4">
+          <button
+            onClick={() => setCurrentPage(prev => Math.max(prev - 1, 1))}
+            disabled={currentPage === 1}
+            className="p-2 md:p-3 bg-white/15 backdrop-blur-xl border border-white/25 rounded-xl md:rounded-2xl shadow-lg disabled:opacity-50 disabled:cursor-not-allowed hover:bg-white/20 transition-all duration-300"
+          >
+            <ChevronLeft className="w-4 h-4 md:w-5 md:h-5 text-blue-600" />
+          </button>
+
+          <div className="flex space-x-1">
+            {Array.from({ length: totalPages }, (_, i) => i + 1).map(page => (
+              <button
+                key={page}
+                onClick={() => setCurrentPage(page)}
+                className={`px-3 py-2 md:px-4 md:py-3 text-sm md:text-base font-medium rounded-xl md:rounded-2xl transition-all duration-300 ${
+                  currentPage === page
+                    ? 'bg-blue-500 text-white shadow-lg'
+                    : 'bg-white/15 backdrop-blur-xl border border-white/25 text-blue-600 hover:bg-white/20'
+                }`}
+              >
+                {page}
+              </button>
+            ))}
+          </div>
+
+          <button
+            onClick={() => setCurrentPage(prev => Math.min(prev + 1, totalPages))}
+            disabled={currentPage === totalPages}
+            className="p-2 md:p-3 bg-white/15 backdrop-blur-xl border border-white/25 rounded-xl md:rounded-2xl shadow-lg disabled:opacity-50 disabled:cursor-not-allowed hover:bg-white/20 transition-all duration-300"
+          >
+            <ChevronRight className="w-4 h-4 md:w-5 md:h-5 text-blue-600" />
+          </button>
+        </div>
+      )}
+
       {recipes.length === 0 && (
         <div className="text-center py-16">
             <p className="text-slate-500">Resep tidak ditemukan. Coba kata kunci lain.</p>
@@ -103,3 +151,8 @@ export default function RecipeGrid({ recipes, onRecipeClick }) {
     </section>
   );
 }
+
+RecipeGrid.propTypes = {
+  recipes: PropTypes.arrayOf(PropTypes.object).isRequired,
+  onRecipeClick: PropTypes.func,
+};
