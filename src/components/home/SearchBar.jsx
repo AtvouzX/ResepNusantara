@@ -2,7 +2,7 @@
 import { Search, X } from 'lucide-react';
 import { useState } from 'react';
 
-export default function SearchBar({ onSearch, placeholder = "Cari resep..." }) {
+export default function SearchBar({ onSearch, placeholder = "Cari resep...", className = "" }) {
   const [query, setQuery] = useState('');
   const [isFocused, setIsFocused] = useState(false);
 
@@ -23,7 +23,7 @@ export default function SearchBar({ onSearch, placeholder = "Cari resep..." }) {
   };
 
   return (
-    <div className="w-full max-w-2xl mx-auto mb-8">
+    <div className={className}>
       <form onSubmit={handleSubmit} className="relative">
         <div className={`relative flex items-center bg-white/10 backdrop-blur-xl border rounded-2xl transition-all duration-300 ${
           isFocused

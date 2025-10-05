@@ -5,12 +5,10 @@ import { ResepMinuman } from '../data/minuman';
 import HeroSection from '../components/home/HeroSection';
 import FeaturedMakananSection from '../components/home/FeaturedMakananSection';
 import FeaturedMinumanSection from '../components/home/FeaturedMinumanSection';
-import SearchBar from '../components/home/SearchBar';
 import SearchResults from '../components/home/SearchResults';
 
-export default function HomePage({ onNavigate }) {
-  const [searchQuery, setSearchQuery] = useState('');
-  const [isSearching, setIsSearching] = useState(false);
+export default function HomePage({ onNavigate, searchQuery, setSearchQuery }) {
+  const isSearching = searchQuery.trim().length > 0;
 
   const featuredMakanan = Object.values(ResepMakanan.resep).slice(0, 3);
   const featuredMinuman = Object.values(ResepMinuman.resep).slice(0, 2);
@@ -41,11 +39,6 @@ export default function HomePage({ onNavigate }) {
     );
   }, [searchQuery, allRecipes]);
 
-  const handleSearch = (query) => {
-    setSearchQuery(query);
-    setIsSearching(query.trim().length > 0);
-  };
-
   const handleRecipeClick = (recipe) => {
     // Navigate to the appropriate page and show recipe details
     if (recipe.category === 'makanan') {
@@ -57,15 +50,11 @@ export default function HomePage({ onNavigate }) {
 
   const handleBackToHome = () => {
     setSearchQuery('');
-    setIsSearching(false);
   };
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-indigo-50 pb-20 md:pb-8">
       <HeroSection />
-
-      {/* Search Bar */}
-      <SearchBar onSearch={handleSearch} />
 
       {/* Main Content */}
       <main className="max-w-7xl mx-auto px-4 md:px-8 space-y-12 md:space-y-16">

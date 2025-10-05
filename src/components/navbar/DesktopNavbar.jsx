@@ -1,7 +1,8 @@
 // src/components/DesktopNavbar.jsx
 import logoUrl from '../../assets/LOGORN.png';
+import SearchBar from '../home/SearchBar';
 
-export default function DesktopNavbar({ currentPage, onNavigate }) {
+export default function DesktopNavbar({ currentPage, onNavigate, onSearch }) {
   const navItems = [
     { id: 'home', label: 'Beranda' },
     { id: 'makanan', label: 'Makanan' },
@@ -9,11 +10,24 @@ export default function DesktopNavbar({ currentPage, onNavigate }) {
     { id: 'profile', label: 'Profile' }
   ];
 
+  const getPlaceholder = () => {
+    switch (currentPage) {
+      case 'home':
+        return 'Cari resep...';
+      case 'makanan':
+        return 'Cari resep makanan...';
+      case 'minuman':
+        return 'Cari resep minuman...';
+      default:
+        return 'Cari resep...';
+    }
+  };
+
   return (
     <nav className="hidden md:block shadow-lg border-b border-blue-100 sticky top-0 z-50 backdrop-blur-sm bg-white/95">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center h-20">
-          
+        <div className="flex items-center h-20">
+
           {/* Logo */}
           <div className="flex items-center space-x-4">
             <div className="relative group">
@@ -36,6 +50,13 @@ export default function DesktopNavbar({ currentPage, onNavigate }) {
             </div>
           </div>
 
+          {/* Search Bar */}
+          <div className="flex-1 flex justify-center px-8">
+            <div className="w-full max-w-md">
+              <SearchBar onSearch={onSearch} placeholder={getPlaceholder()} />
+            </div>
+          </div>
+
           {/* Navigation Links */}
           <div className="flex items-center space-x-10">
             {navItems.map((item) => (
@@ -52,7 +73,7 @@ export default function DesktopNavbar({ currentPage, onNavigate }) {
               </button>
             ))}
           </div>
-         
+
         </div>
       </div>
     </nav>

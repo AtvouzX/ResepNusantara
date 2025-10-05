@@ -14,6 +14,7 @@ import PWABadge from './PWABadge';
 function AppRoot() {
   const [showSplash, setShowSplash] = useState(true);
   const [currentPage, setCurrentPage] = useState('home');
+  const [searchQuery, setSearchQuery] = useState('');
 
   const handleSplashComplete = () => {
     setShowSplash(false);
@@ -26,15 +27,15 @@ function AppRoot() {
   const renderCurrentPage = () => {
     switch (currentPage) {
       case 'home':
-        return <HomePage onNavigate={handleNavigation} />;
+        return <HomePage onNavigate={handleNavigation} searchQuery={searchQuery} setSearchQuery={setSearchQuery} />;
       case 'makanan':
-        return <MakananPage />;
+        return <MakananPage searchQuery={searchQuery} setSearchQuery={setSearchQuery} />;
       case 'minuman':
-        return <MinumanPage />;
+        return <MinumanPage searchQuery={searchQuery} setSearchQuery={setSearchQuery} />;
       case 'profile':
         return <ProfilePage />;
       default:
-        return <HomePage onNavigate={handleNavigation} />;
+        return <HomePage onNavigate={handleNavigation} searchQuery={searchQuery} setSearchQuery={setSearchQuery} />;
     }
   };
 
@@ -45,7 +46,7 @@ function AppRoot() {
   return (
     <div className="min-h-screen bg-gray-50">
       {/* Desktop Navbar */}
-      <DesktopNavbar currentPage={currentPage} onNavigate={handleNavigation} />
+      <DesktopNavbar currentPage={currentPage} onNavigate={handleNavigation} onSearch={setSearchQuery} />
       
       {/* Main Content */}
       <main className="min-h-screen">

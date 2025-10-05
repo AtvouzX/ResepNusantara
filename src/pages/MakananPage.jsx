@@ -3,10 +3,9 @@ import { useState, useEffect } from 'react';
 import { ResepMakanan } from '../data/makanan';
 import RecipeGrid from '../components/makanan/RecipeGrid';
 import RecipeDetail from '../components/makanan/RecipeDetail';
-import SearchBar from '../components/home/SearchBar';
 
-export default function MakananPage() {
-  const [searchQuery, setSearchQuery] = useState('');
+
+export default function MakananPage({ searchQuery, setSearchQuery }) {
   const [filteredRecipes, setFilteredRecipes] = useState([]);
   const [selectedRecipe, setSelectedRecipe] = useState(null);
 
@@ -45,13 +44,7 @@ export default function MakananPage() {
         {selectedRecipe ? (
           <RecipeDetail recipe={selectedRecipe} onBack={handleBackToList} />
         ) : (
-          <>
-            <SearchBar
-              onSearch={setSearchQuery}
-              placeholder="Cari resep makanan..."
-            />
-            <RecipeGrid recipes={filteredRecipes} onRecipeClick={handleRecipeClick} />
-          </>
+          <RecipeGrid recipes={filteredRecipes} onRecipeClick={handleRecipeClick} />
         )}
       </main>
     </div>

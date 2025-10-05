@@ -3,10 +3,9 @@ import { useState, useEffect } from 'react';
 import { ResepMinuman } from '../data/minuman';
 import RecipeGrid from '../components/minuman/RecipeGrid';
 import RecipeDetail from '../components/minuman/RecipeDetail';
-import SearchBar from '../components/home/SearchBar';
 
-export default function MinumanPage() {
-  const [searchQuery, setSearchQuery] = useState('');
+
+export default function MinumanPage({ searchQuery, setSearchQuery }) {
   const [filteredRecipes, setFilteredRecipes] = useState([]);
   const [selectedRecipe, setSelectedRecipe] = useState(null);
 
@@ -45,13 +44,7 @@ export default function MinumanPage() {
         {selectedRecipe ? (
           <RecipeDetail recipe={selectedRecipe} onBack={handleBackToList} />
         ) : (
-          <>
-            <SearchBar
-              onSearch={setSearchQuery}
-              placeholder="Cari resep minuman..."
-            />
-            <RecipeGrid recipes={filteredRecipes} onRecipeClick={handleRecipeClick} />
-          </>
+          <RecipeGrid recipes={filteredRecipes} onRecipeClick={handleRecipeClick} />
         )}
       </main>
     </div>
