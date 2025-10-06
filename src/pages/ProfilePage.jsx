@@ -14,6 +14,7 @@ export default function ProfilePage() {
           />
           <h2 className="text-2xl font-bold text-slate-800 mb-2">Faiz Abdul Hanif</h2>
           <p className="text-slate-600 mb-6">21120123140138</p>
+            <p className="text-slate-600 mb-6">Kelompok 21</p>
           {/*<a*/}
           {/*  href="https://github.com/AtvouzX"*/}
           {/*  target="_blank"*/}
