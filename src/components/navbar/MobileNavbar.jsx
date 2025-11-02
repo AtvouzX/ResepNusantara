@@ -1,11 +1,11 @@
 // src/components/MobileNavbar.jsx
-import { Home, ChefHat, Coffee, User } from 'lucide-react';
+import { Home, ChefHat, User, Heart } from 'lucide-react';
 
 export default function MobileNavbar({ currentPage, onNavigate }) {
   const navItems = [
     { id: 'home', label: 'Beranda', icon: Home },
-    { id: 'makanan', label: 'Makanan', icon: ChefHat },
-    { id: 'minuman', label: 'Minuman', icon: Coffee },
+    { id: 'resep', label: 'Resep', icon: ChefHat },
+    { id: 'favorites', label: 'Favorit', icon: Heart },
     { id: 'profile', label: 'Profile', icon: User }
   ];
 

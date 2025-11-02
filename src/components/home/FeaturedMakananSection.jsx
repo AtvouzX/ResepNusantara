@@ -35,7 +35,7 @@ export default function FeaturedMakananSection({ featuredMakanan, onNavigate }) 
       <div className="flex items-center justify-between mb-6 md:mb-8">
         <h2 className="text-xl md:text-3xl font-bold text-slate-800">Resep Makanan</h2>
         <button
-          onClick={() => onNavigate && onNavigate('makanan')}
+          onClick={() => onNavigate && onNavigate('resep')}
           className="text-slate-500 hover:text-slate-600 font-medium text-xs md:text-sm transition-colors duration-200 hover:underline"
         >
           Lihat Semua

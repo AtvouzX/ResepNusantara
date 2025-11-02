@@ -1,5 +1,6 @@
 // src/pages/HomePage.jsx
-import { useState, useMemo } from 'react';
+import { useMemo } from 'react';
+import PropTypes from 'prop-types';
 import { ResepMakanan } from '../data/makanan';
 import { ResepMinuman } from '../data/minuman';
 import HeroSection from '../components/home/HeroSection';
@@ -40,12 +41,8 @@ export default function HomePage({ onNavigate, searchQuery, setSearchQuery }) {
   }, [searchQuery, allRecipes]);
 
   const handleRecipeClick = (recipe) => {
-    // Navigate to the appropriate page and show recipe details
-    if (recipe.category === 'makanan') {
-      onNavigate('makanan');
-    } else {
-      onNavigate('minuman');
-    }
+    // Navigate to the recipes page
+    onNavigate('resep');
   };
 
   const handleBackToHome = () => {
@@ -74,3 +71,9 @@ export default function HomePage({ onNavigate, searchQuery, setSearchQuery }) {
     </div>
   );
 }
+
+HomePage.propTypes = {
+  onNavigate: PropTypes.func.isRequired,
+  searchQuery: PropTypes.string.isRequired,
+  setSearchQuery: PropTypes.func.isRequired,
+};

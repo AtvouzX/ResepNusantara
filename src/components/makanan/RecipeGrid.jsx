@@ -1,9 +1,9 @@
 // src/components/makanan/RecipeGrid.jsx
-import { Clock, Star, ChefHat, ChevronLeft, ChevronRight } from 'lucide-react';
+import { Clock, Star, ChefHat, ChevronLeft, ChevronRight, Heart } from 'lucide-react';
 import { useState, useEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
 
-export default function RecipeGrid({ recipes, onRecipeClick }) {
+export default function RecipeGrid({ recipes, onRecipeClick, onFavoriteToggle, favorites = [] }) {
   const [visibleCards, setVisibleCards] = useState(new Set());
   const [currentPage, setCurrentPage] = useState(1);
   const cardRefs = useRef([]);
@@ -48,10 +48,10 @@ export default function RecipeGrid({ recipes, onRecipeClick }) {
   return (
     <section>
        <h1 className="text-3xl md:text-5xl font-bold text-slate-800 text-center mb-4">
-        Jelajahi Resep Makanan
+        Jelajahi Semua Resep
       </h1>
       <p className="text-center text-slate-500 max-w-2xl mx-auto mb-8">
-        Temukan inspirasi masakan Nusantara favoritmu. Dari hidangan utama hingga camilan, semua ada di sini.
+        Temukan inspirasi kuliner Nusantara favoritmu. Dari hidangan utama hingga minuman segar, semua ada di sini.
       </p>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-8">
         {currentRecipes.map((recipe, index) => (
@@ -71,17 +71,37 @@ export default function RecipeGrid({ recipes, onRecipeClick }) {
             >
               <div className="absolute inset-0 bg-gradient-to-br from-white/5 via-transparent to-blue-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
               <div className="relative h-32 md:h-56 overflow-hidden">
-                <img 
+                <img
                   src={recipe.image_url}
                   alt={recipe.name}
                   className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent" />
+                {/* Favorite Button */}
+                <button
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    onFavoriteToggle && onFavoriteToggle(recipe);
+                  }}
+                  className="absolute top-3 right-3 p-2 bg-white/90 backdrop-blur-sm rounded-full shadow-lg hover:bg-white transition-all duration-200"
+                >
+                  <Heart
+                    className={`w-4 h-4 md:w-5 md:h-5 transition-colors duration-200 ${
+                      favorites.includes(recipe.id)
+                        ? 'text-red-500 fill-current'
+                        : 'text-gray-400 hover:text-red-400'
+                    }`}
+                  />
+                </button>
               </div>
               <div className="relative z-10 p-4 md:p-8">
                 <div className="flex items-center justify-between mb-3 md:mb-4">
-                  <span className="text-xs font-semibold text-blue-700 bg-blue-100/90 px-2 md:px-3 py-1 md:py-1.5 rounded-full">
-                    Makanan
+                  <span className={`text-xs font-semibold px-2 md:px-3 py-1 md:py-1.5 rounded-full ${
+                    recipe.type === 'minuman'
+                      ? 'text-green-700 bg-green-100/90'
+                      : 'text-blue-700 bg-blue-100/90'
+                  }`}>
+                    {recipe.type === 'minuman' ? 'Minuman' : 'Makanan'}
                   </span>
                   <div className="flex items-center space-x-1 bg-white/90 px-2 py-1 rounded-full">
                     <Star className="w-3 h-3 md:w-4 md:h-4 text-yellow-500 fill-current" />
@@ -155,4 +175,6 @@ export default function RecipeGrid({ recipes, onRecipeClick }) {
 RecipeGrid.propTypes = {
   recipes: PropTypes.arrayOf(PropTypes.object).isRequired,
   onRecipeClick: PropTypes.func,
+  onFavoriteToggle: PropTypes.func,
+  favorites: PropTypes.arrayOf(PropTypes.string),
 };

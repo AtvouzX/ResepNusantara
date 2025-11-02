@@ -1,27 +1,17 @@
 // src/components/DesktopNavbar.jsx
+import PropTypes from 'prop-types';
 import logoUrl from '../../assets/LOGORN.png';
 import SearchBar from '../home/SearchBar';
 
 export default function DesktopNavbar({ currentPage, onNavigate, onSearch }) {
   const navItems = [
     { id: 'home', label: 'Beranda' },
-    { id: 'makanan', label: 'Makanan' },
-    { id: 'minuman', label: 'Minuman' },
+    { id: 'resep', label: 'Resep' },
+    { id: 'favorites', label: 'Favorit' },
     { id: 'profile', label: 'Profile' }
   ];
 
-  const getPlaceholder = () => {
-    switch (currentPage) {
-      case 'home':
-        return 'Cari resep...';
-      case 'makanan':
-        return 'Cari resep makanan...';
-      case 'minuman':
-        return 'Cari resep minuman...';
-      default:
-        return 'Cari resep...';
-    }
-  };
+
 
   return (
     <nav className="hidden md:block shadow-lg border-b border-blue-100 sticky top-0 z-50 backdrop-blur-sm bg-white/95">
@@ -53,7 +43,7 @@ export default function DesktopNavbar({ currentPage, onNavigate, onSearch }) {
           {/* Search Bar */}
           <div className="flex-1 flex justify-center px-8">
             <div className="w-full max-w-md">
-              <SearchBar onSearch={onSearch} placeholder={getPlaceholder()} />
+              {/*<SearchBar onSearch={onSearch} placeholder={getPlaceholder()} />*/}
             </div>
           </div>
 
@@ -79,3 +69,9 @@ export default function DesktopNavbar({ currentPage, onNavigate, onSearch }) {
     </nav>
   );
 }
+
+DesktopNavbar.propTypes = {
+  currentPage: PropTypes.string.isRequired,
+  onNavigate: PropTypes.func.isRequired,
+  onSearch: PropTypes.func.isRequired,
+};

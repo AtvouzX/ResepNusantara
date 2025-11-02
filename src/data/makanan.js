@@ -1,7 +1,7 @@
 export const ResepMakanan = {
   "resep": {
     "resep1": {
-      "id": 1,
+      "id": "makanan-1",
       "name": "Nasi Goreng Spesial",
       "ingredients": [
         "2 piring nasi putih",
@@ -21,7 +21,7 @@ export const ResepMakanan = {
       "image_url": "https://images.unsplash.com/photo-1680674774705-90b4904b3a7f?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
     },
     "resep2": {
-      "id": 2,
+      "id": "makanan-2",
       "name": "Soto Ayam",
       "ingredients": [
         "500 gram ayam (potong kecil)",
@@ -42,7 +42,7 @@ export const ResepMakanan = {
       "image_url": "https://images.unsplash.com/photo-1572656306390-40a9fc3899f7?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
     },
     "resep3": {
-      "id": 3,
+      "id": "makanan-3",
       "name": "Rendang Daging",
       "ingredients": [
         "1 kg daging sapi",
@@ -64,7 +64,7 @@ export const ResepMakanan = {
       "image_url": "https://www.astronauts.id/blog/wp-content/uploads/2023/03/Resep-Rendang-Daging-Sapi-Untuk-Lebaran-Gurih-dan-Nikmat-1200x675.jpg"
     },
     "resep4": {
-      "id": 4,
+      "id": "makanan-4",
       "name": "Ayam Goreng Kremes",
       "ingredients": [
         "500 gram ayam",
@@ -84,7 +84,7 @@ export const ResepMakanan = {
       "image_url": "https://www.dapurkobe.co.id/wp-content/uploads/ayam-pentung-crispy.jpg"
     },
     "resep5": {
-      "id": 5,
+      "id": "makanan-5",
       "name": "Gado-Gado",
       "ingredients": [
         "100 gram kacang tanah",
@@ -103,7 +103,7 @@ export const ResepMakanan = {
       "image_url": "https://upload.wikimedia.org/wikipedia/commons/2/26/Gado_gado_jakarta.jpg"
     },
     "resep6": {
-      "id": 6,
+      "id": "makanan-6",
       "name": "Pempek Palembang",
       "ingredients": [
         "500 gram ikan tenggiri giling",
@@ -121,7 +121,7 @@ export const ResepMakanan = {
       "image_url": "https://lingkar.news/wp-content/uploads/2023/03/Aneka-Resep-Pempek-Makanan-Tradisional-Khas-Palembang.jpg"
     },
     "resep7": {
-      "id": 7,
+      "id": "makanan-7",
       "name": "Bakso Sapi",
       "ingredients": [
         "500 gram daging sapi giling",
@@ -138,7 +138,7 @@ export const ResepMakanan = {
       "image_url": "https://images.unsplash.com/photo-1687425973269-af0d62587769?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
     },
     "resep8": {
-      "id": 8,
+      "id": "makanan-8",
       "name": "Sate Ayam",
       "ingredients": [
         "500 gram daging ayam (potong kecil)",
@@ -155,7 +155,7 @@ export const ResepMakanan = {
       "image_url": "https://images.unsplash.com/photo-1645696301019-35adcc18fc21?q=80&w=1929&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
     },
     "resep9": {
-      "id": 9,
+      "id": "makanan-9",
       "name": "Rawon",
       "ingredients": [
         "500 gram daging sapi",
@@ -175,7 +175,7 @@ export const ResepMakanan = {
       "image_url": "https://asset.kompas.com/crops/hNtKM00giVbyEov1LyRMTB65YP8=/0x38:1000x705/1200x800/data/photo/2023/09/08/64faa742ca9ae.jpg"
     },
     "resep10": {
-      "id": 10,
+      "id": "makanan-10",
       "name": "Karedok",
       "ingredients": [
         "100 gram kacang panjang",

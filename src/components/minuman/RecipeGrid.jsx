@@ -1,9 +1,9 @@
 // src/components/minuman/RecipeGrid.jsx
-import { Clock, Star, ChefHat, ChevronLeft, ChevronRight } from 'lucide-react';
+import { Clock, Star, ChefHat, ChevronLeft, ChevronRight, Heart } from 'lucide-react';
 import { useState, useEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
 
-export default function RecipeGrid({ recipes, onRecipeClick }) {
+export default function RecipeGrid({ recipes, onRecipeClick, onFavoriteToggle, favorites = [] }) {
   const [visibleCards, setVisibleCards] = useState(new Set());
   const [currentPage, setCurrentPage] = useState(1);
   const cardRefs = useRef([]);
@@ -20,7 +20,7 @@ export default function RecipeGrid({ recipes, onRecipeClick }) {
 
     useEffect(() => {
     cardRefs.current = cardRefs.current.slice(0, currentRecipes.length);
-
+ run
     const observer = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
@@ -70,12 +70,28 @@ export default function RecipeGrid({ recipes, onRecipeClick }) {
             >
               <div className="absolute inset-0 bg-gradient-to-br from-white/5 via-transparent to-green-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
               <div className="relative h-32 md:h-56 overflow-hidden">
-                <img 
+                <img
                   src={recipe.image_url}
                   alt={recipe.name}
                   className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent" />
+                {/* Favorite Button */}
+                <button
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    onFavoriteToggle && onFavoriteToggle(recipe);
+                  }}
+                  className="absolute top-3 right-3 p-2 bg-white/90 backdrop-blur-sm rounded-full shadow-lg hover:bg-white transition-all duration-200"
+                >
+                  <Heart
+                    className={`w-4 h-4 md:w-5 md:h-5 transition-colors duration-200 ${
+                      favorites.includes(recipe.id)
+                        ? 'text-red-500 fill-current'
+                        : 'text-gray-400 hover:text-red-400'
+                    }`}
+                  />
+                </button>
               </div>
               <div className="relative z-10 p-4 md:p-8">
                 <div className="flex items-center justify-between mb-3 md:mb-4">
@@ -155,4 +171,6 @@ export default function RecipeGrid({ recipes, onRecipeClick }) {
 RecipeGrid.propTypes = {
   recipes: PropTypes.arrayOf(PropTypes.object).isRequired,
   onRecipeClick: PropTypes.func,
+  onFavoriteToggle: PropTypes.func,
+  favorites: PropTypes.arrayOf(PropTypes.string),
 };
