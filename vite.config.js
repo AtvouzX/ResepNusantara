@@ -5,15 +5,10 @@ import react from '@vitejs/plugin-react'
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  plugins: [react(), VitePWA(), tailwindcss(),({
-    registerType: 'autoUpdate',
-    includeAssets: ['favicon.ico', 'robots.txt', 'apple-touch-icon.png', 'LOGORN.png'],
-    injectRegister: false,
-
-    pwaAssets: {
-      disabled: false,
-      config: true,
-    },
+  plugins: [react(), tailwindcss(), VitePWA({
+    registerType: 'prompt',
+    includeAssets: ['favicon.ico', 'apple-touch-icon.png', 'LOGORN.png'],
+    injectRegister: 'auto',
 
     manifest: {
       name: 'Resep-Nusantara',
@@ -24,15 +19,6 @@ export default defineConfig({
 
     workbox: {
       globPatterns: ['**/*.{js,css,html,svg,png,ico}'],
-      cleanupOutdatedCaches: true,
-      clientsClaim: true,
-    },
-
-    devOptions: {
-      enabled: false,
-      navigateFallback: 'index.html',
-      suppressWarnings: true,
-      type: 'module',
     },
   })],
 })
