@@ -1,11 +1,12 @@
 // src/pages/MinumanPage.jsx
 import { useState, useEffect } from 'react';
+import PropTypes from 'prop-types';
 import { ResepMinuman } from '../data/minuman';
 import RecipeGrid from '../components/minuman/RecipeGrid';
 import RecipeDetail from '../components/minuman/RecipeDetail';
 
 
-export default function MinumanPage({ searchQuery, setSearchQuery }) {
+export default function MinumanPage({ searchQuery }) {
   const [filteredRecipes, setFilteredRecipes] = useState([]);
   const [selectedRecipe, setSelectedRecipe] = useState(null);
 
@@ -50,3 +51,7 @@ export default function MinumanPage({ searchQuery, setSearchQuery }) {
     </div>
   );
 }
+
+MinumanPage.propTypes = {
+  searchQuery: PropTypes.string.isRequired,
+};

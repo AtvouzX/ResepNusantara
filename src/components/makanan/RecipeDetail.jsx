@@ -1,6 +1,7 @@
 // src/components/makanan/RecipeDetail.jsx
 import { ArrowLeft, Clock, Star, ChefHat, CheckCircle } from 'lucide-react';
 import { useState } from 'react';
+import PropTypes from 'prop-types';
 
 export default function RecipeDetail({ recipe, onBack }) {
   const [completedSteps, setCompletedSteps] = useState(new Set());
@@ -118,3 +119,14 @@ export default function RecipeDetail({ recipe, onBack }) {
     </div>
   );
 }
+
+RecipeDetail.propTypes = {
+  recipe: PropTypes.shape({
+    id: PropTypes.string.isRequired,
+    image_url: PropTypes.string.isRequired,
+    name: PropTypes.string.isRequired,
+    ingredients: PropTypes.array.isRequired,
+    steps: PropTypes.array.isRequired,
+  }).isRequired,
+  onBack: PropTypes.func.isRequired,
+};

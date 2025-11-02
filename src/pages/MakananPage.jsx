@@ -1,11 +1,12 @@
 // src/pages/MakananPage.jsx
 import { useState, useEffect } from 'react';
+import PropTypes from 'prop-types';
 import { ResepMakanan } from '../data/makanan';
 import RecipeGrid from '../components/makanan/RecipeGrid';
 import RecipeDetail from '../components/makanan/RecipeDetail';
 
 
-export default function MakananPage({ searchQuery, setSearchQuery }) {
+export default function MakananPage({ searchQuery }) {
   const [filteredRecipes, setFilteredRecipes] = useState([]);
   const [selectedRecipe, setSelectedRecipe] = useState(null);
 
@@ -50,3 +51,7 @@ export default function MakananPage({ searchQuery, setSearchQuery }) {
     </div>
   );
 }
+
+MakananPage.propTypes = {
+  searchQuery: PropTypes.string.isRequired,
+};

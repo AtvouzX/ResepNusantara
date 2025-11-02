@@ -1,4 +1,5 @@
 // src/components/splash/LoadingAnimation.jsx
+import PropTypes from 'prop-types';
 export default function LoadingAnimation({ fadeIn, progress }) {
   return (
     <div className={`w-full max-w-xs sm:max-w-sm transition-all duration-1000 ${
@@ -51,3 +52,8 @@ export default function LoadingAnimation({ fadeIn, progress }) {
     </div>
   );
 }
+
+LoadingAnimation.propTypes = {
+  fadeIn: PropTypes.bool.isRequired,
+  progress: PropTypes.number.isRequired,
+};

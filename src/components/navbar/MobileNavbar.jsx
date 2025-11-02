@@ -1,5 +1,6 @@
 // src/components/MobileNavbar.jsx
 import { Home, ChefHat, User, Heart } from 'lucide-react';
+import PropTypes from 'prop-types';
 
 export default function MobileNavbar({ currentPage, onNavigate }) {
   const navItems = [
@@ -39,3 +40,8 @@ export default function MobileNavbar({ currentPage, onNavigate }) {
     </nav>
   );
 }
+
+MobileNavbar.propTypes = {
+  currentPage: PropTypes.string.isRequired,
+  onNavigate: PropTypes.func.isRequired,
+};

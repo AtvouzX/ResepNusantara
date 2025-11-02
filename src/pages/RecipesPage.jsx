@@ -1,18 +1,18 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 import PropTypes from 'prop-types';
 import { ResepMakanan } from '../data/makanan';
 import { ResepMinuman } from '../data/minuman';
 import RecipeGrid from '../components/makanan/RecipeGrid';
 import RecipeDetail from '../components/makanan/RecipeDetail';
 
-export default function RecipesPage({ searchQuery, setSearchQuery, favorites, onFavoriteToggle }) {
+export default function RecipesPage({ searchQuery, favorites, onFavoriteToggle }) {
   const [filteredRecipes, setFilteredRecipes] = useState([]);
   const [selectedRecipe, setSelectedRecipe] = useState(null);
 
-  const allRecipes = [
+  const allRecipes = useMemo(() => [
     ...Object.values(ResepMakanan.resep).map(recipe => ({ ...recipe, type: 'makanan' })),
     ...Object.values(ResepMinuman.resep).map(recipe => ({ ...recipe, type: 'minuman' }))
-  ];
+  ], []);
 
   useEffect(() => {
     const filter = () => {
@@ -56,7 +56,6 @@ export default function RecipesPage({ searchQuery, setSearchQuery, favorites, on
 
 RecipesPage.propTypes = {
   searchQuery: PropTypes.string.isRequired,
-  setSearchQuery: PropTypes.func.isRequired,
   favorites: PropTypes.arrayOf(PropTypes.string).isRequired,
   onFavoriteToggle: PropTypes.func.isRequired,
 };

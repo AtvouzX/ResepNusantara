@@ -15,12 +15,12 @@ export default function RecipeGrid({ recipes, onRecipeClick, onFavoriteToggle, f
 
     useEffect(() => {
         if (currentPage > totalPages) setCurrentPage(1);
-    }, [recipes.length]);
+    }, [recipes.length, currentPage, totalPages]);
 
 
     useEffect(() => {
     cardRefs.current = cardRefs.current.slice(0, currentRecipes.length);
- run
+
     const observer = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
@@ -42,7 +42,7 @@ export default function RecipeGrid({ recipes, onRecipeClick, onFavoriteToggle, f
     return () => {
       observer.disconnect();
     };
-  }, [currentRecipes]);
+  }, [currentRecipes, currentPage, totalPages]);
 
   return (
     <section>

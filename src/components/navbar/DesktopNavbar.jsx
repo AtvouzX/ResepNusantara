@@ -1,9 +1,8 @@
 // src/components/DesktopNavbar.jsx
 import PropTypes from 'prop-types';
 import logoUrl from '../../assets/LOGORN.png';
-import SearchBar from '../home/SearchBar';
 
-export default function DesktopNavbar({ currentPage, onNavigate, onSearch }) {
+export default function DesktopNavbar({ currentPage, onNavigate }) {
   const navItems = [
     { id: 'home', label: 'Beranda' },
     { id: 'resep', label: 'Resep' },
@@ -73,5 +72,4 @@ export default function DesktopNavbar({ currentPage, onNavigate, onSearch }) {
 DesktopNavbar.propTypes = {
   currentPage: PropTypes.string.isRequired,
   onNavigate: PropTypes.func.isRequired,
-  onSearch: PropTypes.func.isRequired,
 };

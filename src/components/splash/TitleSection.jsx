@@ -1,4 +1,5 @@
 // src/components/splash/TitleSection.jsx
+import PropTypes from 'prop-types';
 export default function TitleSection({ fadeIn }) {
   return (
     <div className="text-center mb-12 sm:mb-16 px-2">
@@ -30,3 +31,7 @@ export default function TitleSection({ fadeIn }) {
     </div>
   );
 }
+
+TitleSection.propTypes = {
+  fadeIn: PropTypes.bool.isRequired,
+};

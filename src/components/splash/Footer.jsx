@@ -1,4 +1,5 @@
 // src/components/splash/Footer.jsx
+import PropTypes from 'prop-types';
 export default function Footer({ fadeOut, fadeIn }) {
   return (
     <>
@@ -30,3 +31,8 @@ export default function Footer({ fadeOut, fadeIn }) {
     </>
   );
 }
+
+Footer.propTypes = {
+  fadeOut: PropTypes.bool.isRequired,
+  fadeIn: PropTypes.bool.isRequired,
+};

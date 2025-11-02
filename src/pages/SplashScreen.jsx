@@ -1,5 +1,6 @@
 // src/pages/SplashScreen.jsx
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
+import PropTypes from 'prop-types';
 import BackgroundPattern from '../components/splash/BackgroundPattern';
 import FloatingElements from '../components/splash/FloatingElements';
 import LogoContainer from '../components/splash/LogoContainer';
@@ -71,3 +72,7 @@ export default function SplashScreen({ onComplete }) {
     </div>
   );
 }
+
+SplashScreen.propTypes = {
+  onComplete: PropTypes.func.isRequired,
+};

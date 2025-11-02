@@ -15,7 +15,7 @@ export default function RecipeGrid({ recipes, onRecipeClick, onFavoriteToggle, f
 
     useEffect(() => {
         if (currentPage > totalPages) setCurrentPage(1);
-    }, [recipes.length]);
+    }, [recipes.length, currentPage, totalPages]);
 
 
     useEffect(() => {
@@ -43,7 +43,7 @@ export default function RecipeGrid({ recipes, onRecipeClick, onFavoriteToggle, f
     return () => {
       observer.disconnect();
     };
-  }, [currentRecipes]);
+  }, [currentRecipes, currentPage, totalPages]);
 
   return (
     <section>

@@ -1,6 +1,7 @@
 // src/components/home/SearchBar.jsx
 import { Search, X } from 'lucide-react';
 import { useState } from 'react';
+import PropTypes from 'prop-types';
 
 export default function SearchBar({ onSearch, placeholder = "Cari resep...", className = "" }) {
   const [query, setQuery] = useState('');
@@ -60,3 +61,9 @@ export default function SearchBar({ onSearch, placeholder = "Cari resep...", cla
     </div>
   );
 }
+
+SearchBar.propTypes = {
+  onSearch: PropTypes.func.isRequired,
+  placeholder: PropTypes.string,
+  className: PropTypes.string,
+};

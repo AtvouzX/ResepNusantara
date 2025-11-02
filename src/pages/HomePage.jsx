@@ -40,7 +40,7 @@ export default function HomePage({ onNavigate, searchQuery, setSearchQuery }) {
     );
   }, [searchQuery, allRecipes]);
 
-  const handleRecipeClick = (recipe) => {
+  const handleRecipeClick = () => {
     // Navigate to the recipes page
     onNavigate('resep');
   };

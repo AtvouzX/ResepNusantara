@@ -1,4 +1,5 @@
 // src/components/splash/FloatingElements.jsx
+import PropTypes from 'prop-types';
 export default function FloatingElements({ fadeOut }) {
   return (
     <>
@@ -17,3 +18,7 @@ export default function FloatingElements({ fadeOut }) {
     </>
   );
 }
+
+FloatingElements.propTypes = {
+  fadeOut: PropTypes.bool.isRequired,
+};

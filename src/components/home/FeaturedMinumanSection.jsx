@@ -1,6 +1,7 @@
 // src/components/home/FeaturedMinumanSection.jsx
 import { Clock, Star, Coffee } from 'lucide-react';
 import { useState, useEffect, useRef } from 'react';
+import PropTypes from 'prop-types';
 
 export default function FeaturedMinumanSection({ featuredMinuman, onNavigate }) {
   const [visibleMinuman, setVisibleMinuman] = useState(new Set());
@@ -102,3 +103,16 @@ export default function FeaturedMinumanSection({ featuredMinuman, onNavigate }) 
     </section>
   );
 }
+
+FeaturedMinumanSection.propTypes = {
+  featuredMinuman: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.string.isRequired,
+      image_url: PropTypes.string.isRequired,
+      name: PropTypes.string.isRequired,
+      ingredients: PropTypes.array.isRequired,
+      steps: PropTypes.array.isRequired,
+    })
+  ).isRequired,
+  onNavigate: PropTypes.func.isRequired,
+};

@@ -1,6 +1,7 @@
 // src/components/home/SearchResults.jsx
 import { Clock, Star, ChefHat, Coffee } from 'lucide-react';
 import { useState, useEffect, useRef } from 'react';
+import PropTypes from 'prop-types';
 
 export default function SearchResults({ results, onRecipeClick, onBack }) {
   const [visibleCards, setVisibleCards] = useState(new Set());
@@ -138,3 +139,18 @@ export default function SearchResults({ results, onRecipeClick, onBack }) {
     </section>
   );
 }
+
+SearchResults.propTypes = {
+  results: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.string.isRequired,
+      category: PropTypes.string.isRequired,
+      image_url: PropTypes.string.isRequired,
+      name: PropTypes.string.isRequired,
+      ingredients: PropTypes.array.isRequired,
+      steps: PropTypes.array.isRequired,
+    })
+  ).isRequired,
+  onRecipeClick: PropTypes.func.isRequired,
+  onBack: PropTypes.func.isRequired,
+};
