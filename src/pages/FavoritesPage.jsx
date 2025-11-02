@@ -36,11 +36,12 @@ export default function FavoritesPage({ favorites, onRecipeClick, onFavoriteTogg
 
         {favoriteRecipes.length > 0 ? (
           <RecipeGrid
-            recipes={favoriteRecipes}
-            onRecipeClick={handleRecipeClick}
-            onFavoriteToggle={handleFavoriteToggle}
-            favorites={favorites}
-          />
+              recipes={favoriteRecipes}
+              onRecipeClick={handleRecipeClick}
+              onFavoriteToggle={handleFavoriteToggle}
+              favorites={favorites}
+              showHeader={false}
+            />
         ) : (
           <div className="text-center py-16">
             <div className="text-6xl mb-4">❤️</div>

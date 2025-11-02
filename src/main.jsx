@@ -1,5 +1,5 @@
 // src/main.jsx
-import { StrictMode, useState } from 'react'
+import { StrictMode, useState, useEffect } from 'react'
 import { createRoot } from 'react-dom/client'
 import SplashScreen from './pages/SplashScreen';
 import HomePage from './pages/HomePage';
@@ -15,7 +15,15 @@ function AppRoot() {
   const [showSplash, setShowSplash] = useState(true);
   const [currentPage, setCurrentPage] = useState('home');
   const [searchQuery, setSearchQuery] = useState('');
-  const [favorites, setFavorites] = useState([]);
+  const [favorites, setFavorites] = useState(() => {
+    try {
+      const raw = localStorage.getItem('favorites');
+      return raw ? JSON.parse(raw) : [];
+    } catch {
+      // If parsing fails or localStorage is unavailable, fallback to empty array
+      return [];
+    }
+  });
 
   const handleSplashComplete = () => {
     setShowSplash(false);
@@ -34,6 +42,15 @@ function AppRoot() {
       }
     });
   };
+
+  // Persist favorites to localStorage whenever they change
+  useEffect(() => {
+    try {
+      localStorage.setItem('favorites', JSON.stringify(favorites));
+    } catch {
+      // ignore write errors (e.g., storage quota, privacy settings)
+    }
+  }, [favorites]);
 
   const renderCurrentPage = () => {
     switch (currentPage) {

@@ -3,7 +3,7 @@ import { Clock, Star, ChefHat, ChevronLeft, ChevronRight, Heart } from 'lucide-r
 import { useState, useEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
 
-export default function RecipeGrid({ recipes, onRecipeClick, onFavoriteToggle, favorites = [] }) {
+export default function RecipeGrid({ recipes, onRecipeClick, onFavoriteToggle, favorites = [], showHeader = true }) {
   const [visibleCards, setVisibleCards] = useState(new Set());
   const [currentPage, setCurrentPage] = useState(1);
   const cardRefs = useRef([]);
@@ -47,12 +47,16 @@ export default function RecipeGrid({ recipes, onRecipeClick, onFavoriteToggle, f
 
   return (
     <section>
-       <h1 className="text-3xl md:text-5xl font-bold text-slate-800 text-center mb-4">
-        Jelajahi Semua Resep
-      </h1>
-      <p className="text-center text-slate-500 max-w-2xl mx-auto mb-8">
-        Temukan inspirasi kuliner Nusantara favoritmu. Dari hidangan utama hingga minuman segar, semua ada di sini.
-      </p>
+      {showHeader && (
+        <>
+          <h1 className="text-3xl md:text-5xl font-bold text-slate-800 text-center mb-4">
+            Jelajahi Semua Resep
+          </h1>
+          <p className="text-center text-slate-500 max-w-2xl mx-auto mb-8">
+            Temukan inspirasi kuliner Nusantara favoritmu. Dari hidangan utama hingga minuman segar, semua ada di sini.
+          </p>
+        </>
+      )}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-8">
         {currentRecipes.map((recipe, index) => (
           <div 
@@ -177,4 +181,5 @@ RecipeGrid.propTypes = {
   onRecipeClick: PropTypes.func,
   onFavoriteToggle: PropTypes.func,
   favorites: PropTypes.arrayOf(PropTypes.string),
+  showHeader: PropTypes.bool,
 };
